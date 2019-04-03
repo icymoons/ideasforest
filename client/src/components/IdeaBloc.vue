@@ -12,9 +12,15 @@
       </div>
     </div>
     <div class="idea-center">{{label}}</div>
-    <div class="idea-bottom" v-if="hover">
+    <div class="idea-bottom">
       <div class="content">
-        <div>{{author}}</div>
+        <div class="idea-author-container">
+          <img
+            src="https://www.rd.com/wp-content/uploads/2017/09/01-shutterstock_476340928-Irina-Bg-1024x683.jpg"
+          >
+
+          <div class="idea-author-name">{{author}}</div>
+        </div>
         <div class="idea-button">voir +</div>
       </div>
     </div>
@@ -53,7 +59,7 @@ $marginbottom: 10px;
 $radius: 2px;
 .idea-bloc {
   color: white;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.63), 0 3px 6px rgba(0, 0, 0, 0.23);
+  //box-shadow: 0 3px 6px rgba(0, 0, 0, 0.63), 0 3px 6px rgba(0, 0, 0, 0.23);
   margin-bottom: $marginbottom;
   padding-top: $spacing;
   padding-bottom: $spacing;
@@ -71,6 +77,7 @@ $radius: 2px;
 
     width: 100%;
     display: flex;
+    align-items: center;
     .content {
       margin-top: auto;
       margin-bottom: auto;
@@ -88,13 +95,33 @@ $radius: 2px;
 
   .idea-bottom {
     bottom: 0;
+    .idea-author-container {
+      display: flex;
+      img {
+        width: 30px;
+        height: 30px;
+        border-radius: 100%;
+        align-self: flex-start;
+      }
+
+      .idea-author-name {
+        margin-left: 10px;
+        margin-top: auto;
+        margin-bottom: auto;
+        align-self: flex-start;
+      }
+    }
+
+    .idea-button {
+      padding: 4px;
+      padding-left: 8px;
+      padding-right: 8px;
+      border-radius: 4px;
+      justify-content: flex-end;
+      background-color: rgba(255, 255, 255, 0.212);
+    }
   }
-  .idea-button {
-    padding: 4px;
-    border-radius: 4px;
-    cursor: pointer;
-    background-color: rgba(255, 255, 255, 0.212);
-  }
+
   .filter {
     position: absolute;
     height: 100%;

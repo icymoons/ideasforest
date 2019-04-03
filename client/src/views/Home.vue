@@ -28,13 +28,15 @@ export default {
 
   data: function() {
     return {
-      ideas: [
-        {
-          label: "idee",
-          author: "author",
-          likes: 0
-        }
-      ]
+      ideas: [],
+      labels: [
+        "label dsf sd hhsdf osdf hdsf sdfo sdfdshsdf sdfhsdf sdfsdh dsf",
+        "afsdfsd fsdfsaaaaaaaaaaaaa oooooooo pppppppppppppaaaa afsdfsd fsdfsaaaaaaaaaaaaa oooooooo pppppppppppppaaaa afsdfsd fsdfsaaaaaaaaaaaaa oooooooo pppppppppppppaaaa ",
+        "sdfsdfs  lorer msdf a ezrrz nc dsfdsfdoierhhzef",
+        "dsfsdfsdf hhhhhhhhhhhhhhh sdfdsf iiiiiiiiiiiiiii sdfsdfooooo dsfds",
+        "dsfdsfffffffffff iiiiiiii sdfdsfsd     sdfdsfdsfsdf jjjjjjjjjjj"
+      ],
+      colors: ["#0170B7", "#FFB17C", "#F61DC4", "#FED82F", "#00BEF2"]
     };
   },
   computed: {
@@ -61,14 +63,24 @@ export default {
         arr.push({
           key: i,
           category: "categorie " + i,
-          label: "idee " + i,
+          label: this.labels[
+            this.randomIntFromInterval(0, this.labels.length - 1)
+          ],
           author: "author " + i,
           likes: 0 + i,
           height: (i + 10) * 40 + "px",
-          background: "#32A"
+          background: this.colors[
+            this.randomIntFromInterval(0, this.colors.length - 1)
+          ]
         });
       }
       return arr;
+    },
+    randomIntFromInterval(
+      min,
+      max // min and max included
+    ) {
+      return Math.floor(Math.random() * (max - min + 1) + min);
     }
   }
 };
