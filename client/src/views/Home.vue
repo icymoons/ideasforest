@@ -1,11 +1,16 @@
 <template>
   <v-container align-center>
     <v-layout wrap justify-center row>
-      <v-flex xs9>
-        <v-layout wrap row>Filter</v-layout>
+      <v-flex xs8>
         <v-layout wrap row>
-          <v-flex xs4 v-for="(idea,index) in ideasComputed" :key="index" :class="'column-ideas'">
-            <idea-bloc v-bind="idea"></idea-bloc>
+          <v-flex xs4 :class="'column-ideas'">
+            <idea-bloc v-for="(idea,index) in ideasComputed.left" :key="index" v-bind="idea"></idea-bloc>
+          </v-flex>
+          <v-flex xs4 :class="'column-ideas'">
+            <idea-bloc v-for="(idea,index) in ideasComputed.center" :key="index" v-bind="idea"></idea-bloc>
+          </v-flex>
+          <v-flex xs4 :class="'column-ideas'">
+            <idea-bloc v-for="(idea,index) in ideasComputed.right" :key="index" v-bind="idea"></idea-bloc>
           </v-flex>
         </v-layout>
       </v-flex>
@@ -34,12 +39,33 @@ export default {
   },
   computed: {
     ideasComputed() {
+      var ideas = this.getIdeas(),
+        sort = { left: [], center: [], right: [] };
+      for (let i = 0; i < ideas.length; i++) {
+        const idea = ideas[i];
+        if (i % 3 == 0) {
+          sort.left.push(idea);
+        } else if (i % 3 == 2) {
+          sort.right.push(idea);
+        } else {
+          sort.center.push(idea);
+        }
+      }
+      return sort;
+    }
+  },
+  methods: {
+    getIdeas() {
       var arr = [];
-      for (let i = 0; i < 50; i++) {
+      for (let i = 0; i <= 80; i++) {
         arr.push({
-          label: "idee" + i,
-          author: "author" + i,
-          likes: 0 + i
+          key: i,
+          category: "categorie " + i,
+          label: "idee " + i,
+          author: "author " + i,
+          likes: 0 + i,
+          height: (i + 10) * 40 + "px",
+          background: "#32A"
         });
       }
       return arr;
