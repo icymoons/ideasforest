@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-toolbar app>
+    <v-toolbar app color="green " dark>
       <v-toolbar-title class="headline text-uppercase">
         <span>Ideas</span>
         <span class="font-weight-light">Forest</span>
@@ -28,3 +28,10 @@ export default {
   }
 };
 </script>
+
+<style>
+.v-content {
+  background-color: #eee;
+}
+</style>
+

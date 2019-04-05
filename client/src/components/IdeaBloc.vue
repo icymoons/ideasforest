@@ -1,11 +1,6 @@
 <template>
-  <div
-    class="idea-bloc"
-    @mouseover="mouseOver"
-    @mouseleave="mouseLeave"
-    :style="'background-color:'+background+';'"
-  >
-    <div class="idea-top" v-if="hover">
+  <div class="idea-bloc" @mouseover="mouseOver" @mouseleave="mouseLeave">
+    <div class="idea-top">
       <div class="content">
         <div>{{category}}</div>
         <div>{{likes}}</div>
@@ -21,7 +16,7 @@
 
           <div class="idea-author-name">{{author}}</div>
         </div>
-        <div class="idea-button">voir +</div>
+        <a class="idea-button" href="#" v-if="hover" @click="toIdea">voir +</a>
       </div>
     </div>
     <div class="filter" v-if="hover"></div>
@@ -42,6 +37,9 @@ export default {
     hover: false
   }),
   methods: {
+    toIdea() {
+      alert("oj");
+    },
     mouseOver() {
       this.hover = true;
     },
@@ -56,10 +54,11 @@ export default {
 $spacing: 40px;
 $padding: 5px;
 $marginbottom: 10px;
-$radius: 2px;
+$radius: 8px;
 .idea-bloc {
-  color: white;
-  //box-shadow: 0 3px 6px rgba(0, 0, 0, 0.63), 0 3px 6px rgba(0, 0, 0, 0.23);
+  min-height: 180px;
+  color: #444;
+  background-color: white;
   margin-bottom: $marginbottom;
   padding-top: $spacing;
   padding-bottom: $spacing;
@@ -67,7 +66,7 @@ $radius: 2px;
   position: relative;
   .idea-center {
     font-size: 20px;
-    padding: $padding;
+    padding: 20px;
   }
   .idea-top,
   .idea-bottom {
@@ -118,7 +117,10 @@ $radius: 2px;
       padding-right: 8px;
       border-radius: 4px;
       justify-content: flex-end;
-      background-color: rgba(255, 255, 255, 0.212);
+
+      background-color: #4caf50;
+      color: white;
+      text-decoration: none;
     }
   }
 
