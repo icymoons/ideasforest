@@ -1,6 +1,31 @@
 <template>
   <v-container align-center>
     <v-layout wrap justify-center row>
+      <v-flex xs4>
+        <v-navigation-drawer permanent>
+          <v-toolbar flat>
+            <v-list>
+              <v-list-tile>
+                <v-list-tile-title class="title">Application</v-list-tile-title>
+              </v-list-tile>
+            </v-list>
+          </v-toolbar>
+
+          <v-divider></v-divider>
+
+          <v-list dense class="pt-0">
+            <v-list-tile v-for="item in items" :key="item.title">
+              <v-list-tile-action>
+                <v-icon>mdi-chart</v-icon>
+              </v-list-tile-action>
+
+              <v-list-tile-content>
+                <v-list-tile-title>why</v-list-tile-title>
+              </v-list-tile-content>
+            </v-list-tile>
+          </v-list>
+        </v-navigation-drawer>
+      </v-flex>
       <v-flex xs8>
         <v-layout wrap row>
           <v-flex xs4 :class="'column-ideas'">

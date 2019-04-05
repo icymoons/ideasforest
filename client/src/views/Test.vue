@@ -4,7 +4,7 @@
       <v-flex xs8>
         <v-layout wrap row>
           <v-flex xs4 :class="'column-ideas'" v-for="(idea,index) in ideasComputed" :key="index">
-            <idea-bloc v-bind="idea"></idea-bloc>
+            <idea-bloc2 v-bind="idea"></idea-bloc2>
           </v-flex>
         </v-layout>
       </v-flex>
@@ -13,11 +13,11 @@
 </template>
 
 <script>
-import IdeaBloc from "../components/IdeaBloc";
+import IdeaBloc2 from "../components/IdeaBloc2";
 
 export default {
   components: {
-    IdeaBloc
+    IdeaBloc2
   },
 
   data: function() {
@@ -26,7 +26,7 @@ export default {
       labels: [
         "Créer une application de partage d'idées",
         "Une chaine de vente sur des soupes",
-        "Changer le monde en vendant des scoobidous",
+        "Changer le monde en vendant des scoubidous",
         "Un casque permettant d'amplifier certaines ondes cérébrales"
       ],
       colors: ["#21aa93", "#01676b"]

@@ -83,6 +83,7 @@ $radius: 8px;
       width: 100%;
       display: flex;
       justify-content: space-between;
+      justify-content: space-between;
     }
   }
 
