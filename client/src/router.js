@@ -1,7 +1,11 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
+<<<<<<< HEAD
 import Register from "./views/Register.vue"
+=======
+import Test from './views/Test.vue'
+>>>>>>> ab704f986d942352f40ef99fb9b03852250ac326
 
 Vue.use(Router)
 
@@ -15,9 +19,15 @@ export default new Router({
       component: Home
     },
     {
+<<<<<<< HEAD
       path: '/register',
       name: 'register',
       component: Register
+=======
+      path: '/test',
+      name: 'test',
+      component: Test
+>>>>>>> ab704f986d942352f40ef99fb9b03852250ac326
     },
     {
       path: '/about',

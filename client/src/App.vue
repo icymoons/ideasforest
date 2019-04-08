@@ -1,29 +1,51 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
-  </div>
+  <v-app>
+    <v-toolbar app color="blue" dark>
+      <v-toolbar-title class="headline text-uppercase">
+        <span>Ideas</span>
+        <span class="font-weight-light">Forest</span>
+      </v-toolbar-title>
+      <v-spacer></v-spacer>
+
+      <v-btn flat href="https://github.com/vuetifyjs/vuetify/releases/latest" target="_blank">
+        <span class="mr-2">Inscription</span>
+      </v-btn>
+      <v-btn flat href="https://github.com/vuetifyjs/vuetify/releases/latest" target="_blank">
+        <span class="mr-2">Connexion</span>
+      </v-btn>
+    </v-toolbar>
+
+    <v-content>
+      <!--
+      <v-parallax src="https://cdn.vuetifyjs.com/images/parallax/material.jpg">
+        <h1 center>Partagez vos idées de Startups avec le monde entier</h1>
+      </v-parallax>
+      -->
+      <router-view></router-view>
+    </v-content>
+  </v-app>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-#nav {
-  padding: 30px;
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-    &.router-link-exact-active {
-      color: #42b983;
-    }
+<script>
+export default {
+  name: "App",
+
+  data() {
+    return {
+      //
+    };
   }
+};
+</script>
+
+<style>
+.v-content {
+  background-color: rgba(184, 184, 184, 0.452);
+}
+
+h1 {
+  text-align: center;
+  font-size: 3rem;
 }
 </style>
+
