@@ -2,24 +2,18 @@ const express = require("express")
 const bodyParser = require("body-parser")
 const cors = require("cors")
 const morgan = require("morgan")
+const config = require("./config/config")
+const { sequelize } = require("./models")
+const routes = require("./routes")
 
 const app = express()
 app.use(morgan("combined"))
 app.use(bodyParser.json())
 app.use(cors())
+routes(app)
 
-app.get('/', (req, res) => {
-    const size = 300, array = []
-    for (let i = 0; i < size; i++) {
-        array.push(i)
-    }
-    res.send(array)
-});
+sequelize.sync().then(() => {
+    app.listen(config.port)
+    console.log("Server started on port " + config.port)
+})
 
-app.post('/register', (req, res) => {
-    res.send({
-        message: `Salut ${req.body.email} ! Content de te revoir ;)`
-    })
-});
-
-app.listen(process.env.PORT || 8081)
