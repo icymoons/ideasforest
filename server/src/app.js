@@ -8,9 +8,17 @@ app.use(morgan("combined"))
 app.use(bodyParser.json())
 app.use(cors())
 
-app.get('/status', (req, res) => {
+app.get('/', (req, res) => {
+    const size = 300, array = []
+    for (let i = 0; i < size; i++) {
+        array.push(i)
+    }
+    res.send(array)
+});
+
+app.post('/register', (req, res) => {
     res.send({
-        message: "okidoki"
+        message: `Salut ${req.body.email} ! Content de te revoir ;)`
     })
 });
 
