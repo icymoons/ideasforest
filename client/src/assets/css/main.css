@@ -1,0 +1,51 @@
+/*Common*/
+html,
+body {
+  padding: 0;
+  margin: 0; }
+
+.wrapper {
+  margin-top: 60px;
+  display: flex;
+  background-color: #eeeeee;
+  height: 100vh; }
+  .wrapper .content {
+    margin-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 900px;
+    background-color: #fff; }
+
+/*Nav*/
+nav {
+  background-color: #1b98ff;
+  display: grid;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 60px;
+  grid-template-areas: "logo search search search links links links links"; }
+  nav #logo {
+    grid-area: logo;
+    display: flex;
+    align-items: center;
+    justify-content: center; }
+  nav #search {
+    grid-area: search;
+    display: flex;
+    align-items: center;
+    justify-content: center; }
+  nav #links {
+    grid-area: links;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center; }
+
+/*Footer*/
+/*Forms*/
+/*Home */
+.ideas-bloc-grid {
+  display: grid;
+  grid-gap: 1rem;
+  grid-template-columns: repeat(3, 1fr); }

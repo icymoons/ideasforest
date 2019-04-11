@@ -1,8 +1,12 @@
 module.exports = (sequelize, DataTypes) =>
     sequelize.define('Idea', {
-        email: {
-            type: DataTypes.STRING,
+        title: {
+            type: DataTypes.TEXT,
             unique: true
         },
-        password: DataTypes.STRING
+        description: {
+            type: DataTypes.TEXT,
+            unique: true
+        },
+        categories: DataTypes.TEXT
     })

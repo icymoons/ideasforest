@@ -1,0 +1,69 @@
+$primary: #1b98ff;
+$secondary: #35ff82;
+$dark: #353535;
+$light: #fff;
+$lightminus1: #eeeeee;
+$lightminus2: #cccccc;
+$navheight: 60px;
+
+/*Common*/
+html,
+body {
+  padding: 0;
+  margin: 0;
+}
+
+.wrapper {
+  margin-top: $navheight;
+  display: flex;
+  background-color: $lightminus1;
+  height: 100vh;
+  .content {
+    margin-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 900px;
+    background-color: $light;
+  }
+}
+/*Nav*/
+
+nav {
+  background-color: $primary;
+  display: grid;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: $navheight;
+  grid-template-areas: "logo search search search links links links links";
+  #logo {
+    grid-area: logo;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  #search {
+    grid-area: search;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  #links {
+    grid-area: links;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+  }
+}
+
+/*Footer*/
+
+/*Forms*/
+
+/*Home */
+.ideas-bloc-grid {
+  display: grid;
+  grid-gap: 1rem;
+  grid-template-columns: repeat(3, 1fr);
+}

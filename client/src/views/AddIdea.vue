@@ -1,6 +1,6 @@
 <template>
-  <div class="register">
-    <h1>Inscrivez vous</h1>
+  <div class="add-idea">
+    <h1>Ajoutez une idée</h1>
   </div>
 </template>
 

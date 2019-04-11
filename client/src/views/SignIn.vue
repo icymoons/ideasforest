@@ -1,6 +1,6 @@
 <template>
-  <div class="register">
-    <h1>Inscrivez vous</h1>
+  <div class="login">
+    <h1>Connectez-vous</h1>
   </div>
 </template>
 

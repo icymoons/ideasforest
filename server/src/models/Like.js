@@ -1,6 +1,9 @@
 module.exports = (sequelize, DataTypes) =>
     sequelize.define('Like', {
-        email: {
+        userID: {
+            type: DataTypes.STRING,
+        },
+        ideaID: {
             type: DataTypes.STRING,
             unique: true
         },

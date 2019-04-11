@@ -1,118 +1,93 @@
 <template>
-  <v-container align-center>
-    <v-layout wrap justify-center row>
-      <v-flex xs4>
-        <v-navigation-drawer permanent>
-          <v-toolbar flat>
-            <v-list>
-              <v-list-tile>
-                <v-list-tile-title class="title">Application</v-list-tile-title>
-              </v-list-tile>
-            </v-list>
-          </v-toolbar>
-
-          <v-divider></v-divider>
-
-          <v-list dense class="pt-0">
-            <v-list-tile v-for="item in items" :key="item.title">
-              <v-list-tile-action>
-                <v-icon>mdi-chart</v-icon>
-              </v-list-tile-action>
-
-              <v-list-tile-content>
-                <v-list-tile-title>why</v-list-tile-title>
-              </v-list-tile-content>
-            </v-list-tile>
-          </v-list>
-        </v-navigation-drawer>
-      </v-flex>
-      <v-flex xs8>
-        <v-layout wrap row>
-          <v-flex xs4 :class="'column-ideas'">
-            <idea-bloc v-for="(idea,index) in ideasComputed.left" :key="index" v-bind="idea"></idea-bloc>
-          </v-flex>
-          <v-flex xs4 :class="'column-ideas'">
-            <idea-bloc v-for="(idea,index) in ideasComputed.center" :key="index" v-bind="idea"></idea-bloc>
-          </v-flex>
-          <v-flex xs4 :class="'column-ideas'">
-            <idea-bloc v-for="(idea,index) in ideasComputed.right" :key="index" v-bind="idea"></idea-bloc>
-          </v-flex>
-        </v-layout>
-      </v-flex>
-    </v-layout>
-  </v-container>
+  <div>
+    <h1>Découvrez des milliers d'idées de startups</h1>
+    <div class="ideas-bloc-grid">
+      <idea-bloc v-for="(idea, i) in ideas" :key="i" v-bind="idea"></idea-bloc>
+    </div>
+  </div>
 </template>
 
 <script>
+// @ is an alias to /src
 import IdeaBloc from "../components/IdeaBloc";
 
 export default {
+  name: "home",
   components: {
     IdeaBloc
   },
-
-  data: function() {
+  data() {
     return {
-      ideas: [],
-      labels: [
-        "Créer une application de partage d'idées",
-        "Une chaine de vente sur des soupes",
-        "Changer le monde en vendant des scoobidous",
-        "Un casque permettant d'amplifier certaines ondes cérébrales"
-      ],
-      colors: ["#21aa93", "#01676b"]
+      ideas: [
+        {
+          author: {
+            name: "Alice",
+            avatar: ""
+          },
+          title: "Bla bla bla bla bla bla bla bla bla bla bla",
+          likes: 34,
+          category: "data",
+          comments: 13,
+          id: 13
+        },
+        {
+          author: {
+            name: "John",
+            avatar: ""
+          },
+          title: "Bla bla bla bla bla bla bla bla bla bla bla",
+          likes: 34,
+          category: "data",
+          comments: 13,
+          id: 14
+        },
+        {
+          author: {
+            name: "Muramasa",
+            avatar: ""
+          },
+          title: "Bla bla bla bla bla bla bla bla bla bla bla",
+          likes: 34,
+          category: "data",
+          comments: 13,
+          id: 16
+        },
+        {
+          author: {
+            name: "Franck",
+            avatar: ""
+          },
+          title: "Bla bla bla bla bla bla bla bla bla bla bla",
+          likes: 50,
+          category: "data",
+          comments: 16,
+          id: 19
+        },
+        {
+          author: {
+            name: "Copernick",
+            avatar: ""
+          },
+          title: "Bla bla bla bla bla bla bla bla bla bla bla",
+          likes: 14,
+          category: "data",
+          comments: 12,
+          id: 15
+        },
+        {
+          author: {
+            name: "Mathilde",
+            avatar: ""
+          },
+          title: "Bla bla bla bla bla bla bla bla bla bla bla",
+          likes: 12,
+          category: "data",
+          comments: 50,
+          id: 19
+        },
+        {}
+      ]
     };
-  },
-  computed: {
-    ideasComputed() {
-      var ideas = this.getIdeas(),
-        sort = { left: [], center: [], right: [] };
-      for (let i = 0; i < ideas.length; i++) {
-        const idea = ideas[i];
-        if (i % 3 == 0) {
-          sort.left.push(idea);
-        } else if (i % 3 == 2) {
-          sort.right.push(idea);
-        } else {
-          sort.center.push(idea);
-        }
-      }
-      return sort;
-    }
-  },
-  methods: {
-    getIdeas() {
-      var arr = [];
-      for (let i = 0; i <= 80; i++) {
-        arr.push({
-          key: i,
-          category: "categorie " + i,
-          label: this.labels[
-            this.randomIntFromInterval(0, this.labels.length - 1)
-          ],
-          author: "author " + i,
-          likes: 0 + i,
-          height: (i + 10) * 40 + "px",
-          background: this.colors[
-            this.randomIntFromInterval(0, this.colors.length - 1)
-          ]
-        });
-      }
-      return arr;
-    },
-    randomIntFromInterval(
-      min,
-      max // min and max included
-    ) {
-      return Math.floor(Math.random() * (max - min + 1) + min);
-    }
   }
 };
 </script>
-<style>
-.column-ideas {
-  padding-left: 6px;
-  padding-right: 6px;
-}
-</style>
-

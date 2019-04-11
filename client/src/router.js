@@ -1,11 +1,13 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
-<<<<<<< HEAD
-import Register from "./views/Register.vue"
-=======
-import Test from './views/Test.vue'
->>>>>>> ab704f986d942352f40ef99fb9b03852250ac326
+import MyAccount from './views/MyAccount.vue'
+import OtherAccount from './views/OtherAccount.vue'
+import IdeaDetails from './views/IdeaDetails.vue'
+import Register from './views/Register.vue'
+import Signin from './views/SignIn.vue'
+import AddIdea from './views/AddIdea.vue'
+import About from './views/About.vue'
 
 Vue.use(Router)
 
@@ -19,23 +21,39 @@ export default new Router({
       component: Home
     },
     {
-<<<<<<< HEAD
+      path: '/ideas/:id',
+      name: 'ideaDetails',
+      component: IdeaDetails
+    },
+    {
+      path: '/add-idea',
+      name: 'add-idea',
+      component: AddIdea
+    },
+    {
+      path: '/my-account',
+      name: 'my-account',
+      component: MyAccount
+    },
+    {
+      path: '/accounts/:id',
+      name: 'other-account',
+      component: OtherAccount
+    },
+    {
+      path: '/signin',
+      name: 'signin',
+      component: Signin
+    },
+    {
       path: '/register',
       name: 'register',
       component: Register
-=======
-      path: '/test',
-      name: 'test',
-      component: Test
->>>>>>> ab704f986d942352f40ef99fb9b03852250ac326
     },
     {
       path: '/about',
       name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
+      component: About
     }
   ]
 })
