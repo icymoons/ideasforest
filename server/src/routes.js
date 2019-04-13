@@ -1,14 +1,28 @@
 const AuthentificationController = require("./controllers/AuthentificationController")
 
+
 module.exports = (app) => {
 
-    app.get('/', (req, res) => {
-        const size = 300, array = []
-        for (let i = 0; i < size; i++) {
-            array.push(i)
-        }
-        res.send(array)
-    });
+    /* Idea controller */
 
-    app.post('/register', AuthentificationController.register)
+    app.get('/', BrowseController.getIdeas);
+
+    app.post('/ajouter-une-idee', AddIdeaController.createIdea)
+
+    app.post('/idee/:id', IdeaDetailsController.getIdea)
+
+    /* User controller */
+
+    app.post('/authentification', AuthentificationController.register)
+
+    app.post('/inscription', UserController.createAccount)
+
+    app.post('/mon-compte', UserController.getMyAccount)
+
+    app.post('/compte/:id',UserController.getOneAccount)
+
+    app.post('/se-desinscrire',UserController.unsubscribe)
+
+
+
 }
