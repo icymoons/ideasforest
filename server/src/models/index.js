@@ -4,6 +4,10 @@ const Sequelize = require("sequelize")
 const config = require("../config/config")
 const db = {}
 
+//relations 
+
+
+
 const sequelize = new Sequelize(
     config.db.database,
     config.db.user,
@@ -19,7 +23,29 @@ fs.readdirSync(__dirname)
         db[model.name] = model
     });
 
+//relations
+db.users.hasMany(db.ideas);
+db.ideas.belongsTo(db.users);
+
+// comments 
+db.users.hasMany(db.comments);
+db.comments.belongsTo(db.users);
+
+db.ideas.hasMany(db.comments);
+db.comments.belongsTo(db.ideas);
+
+// replies  
+db.comments.hasMany(db.replies);
+db.replies.belongsTo(db.comments);
+
+db.users.hasMany(db.replies);
+db.replies.belongsTo(db.users);
+
 db.sequelize = sequelize
 db.Sequelize = Sequelize
+
+
+
+
 
 module.exports = db

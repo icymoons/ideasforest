@@ -1,10 +1,12 @@
 module.exports = (sequelize, DataTypes) =>
-    sequelize.define('replies', {
+    sequelize.define('ideas', {
         id: {
             type: DataTypes.UUID,
             primaryKey: true,
             defaultValue: DataTypes.UUIDV4,
             allowNull: false
         },
-        content: DataTypes.TEXT
+        title: DataTypes.TEXT,
+        description: DataTypes.TEXT,
+        tags: DataTypes.TEXT
     })

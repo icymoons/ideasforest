@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) =>
-    sequelize.define('replies', {
+    sequelize.define('comments', {
         id: {
             type: DataTypes.UUID,
             primaryKey: true,

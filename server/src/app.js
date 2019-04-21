@@ -10,10 +10,16 @@ const app = express()
 app.use(morgan("combined"))
 app.use(bodyParser.json())
 app.use(cors())
-routes(app)
+
+Object.values(routes).forEach(route => {
+    route(app)
+})
+
+app.use(function (req, res, next) {
+    res.status(404).json({ default: true })
+})
 
 sequelize.sync().then(() => {
     app.listen(config.port)
     console.log("Server started on port " + config.port)
 })
-
