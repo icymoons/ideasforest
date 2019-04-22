@@ -8,17 +8,30 @@ module.exports = {
                     id: userId
                 }
             })
-            if (!user) return null
             return user
         } catch (error) {
             throw new Error(error)
         }
     },
-    async createUser() {
-
+    async createUser(firstName, lastName, pseudo, email, password) {
+        try {
+            const user = await users.create({
+                firstName, lastName, pseudo, email, password
+            })
+            return user
+        } catch (error) {
+            throw new Error(error)
+        }
     },
-    async updateUser() {
-
+    async updateUser(userId, firstName, lastName, pseudo, email, password) {
+        try {
+            const user = await users.updateOne({
+                userId, firstName, lastName, pseudo, email, password
+            })
+            return user
+        } catch (error) {
+            throw new Error(error)
+        }
     }
 
 }

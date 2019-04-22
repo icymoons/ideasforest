@@ -6,8 +6,13 @@ function capitalize(string) {
 }
 
 module.exports = {
-    redirectDefault(res) {
-        res.status(404).json({ default: true })
+    redirect: {
+        default(res) {
+            res.status(404).json({ default: true })
+        },
+        success(res) {
+            res.json({ success: true })
+        },
     },
     requireDir(dirName) {
         var exp = {}
