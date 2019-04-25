@@ -1,3 +1,1 @@
-const helpers = require('../helpers')
-
-module.exports = helpers.requireDir(__dirname)
+module.exports = require('../helpers').requireDir(__dirname)

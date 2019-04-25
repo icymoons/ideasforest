@@ -4,7 +4,9 @@ module.exports = {
     async createReply() {
         try {
             return await replies.create({
-                commentId, userId, content
+                commentId,
+                userId,
+                content
             })
         }
         catch (error) {

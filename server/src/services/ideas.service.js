@@ -4,7 +4,10 @@ module.exports = {
     async createIdea(userId, title, description, tags) {
         try {
             return await ideas.create({
-                userId, title, description, tags
+                userId,
+                title,
+                description,
+                tags
             })
         } catch (error) {
             throw new Error(error)
@@ -28,7 +31,9 @@ module.exports = {
     async getIdeaPage(ideaId) {
         try {
             const idea = await ideas.findOne({
-                where: { id: ideaId }
+                where: {
+                    id: ideaId
+                }
             })
             if (!idea) return null
             const ideaUser = await idea.getUser()
@@ -43,10 +48,18 @@ module.exports = {
                     }
                 })
                 const repliesData = await Promise.all(repliesPromises)
-                return { comment, user: commentUser, repliesData }
+                return {
+                    comment,
+                    user: commentUser,
+                    repliesData
+                }
             })
             const commentsData = await Promise.all(commentsPromises)
-            return { idea, user: ideaUser, commentsData }
+            return {
+                idea,
+                user: ideaUser,
+                commentsData
+            }
         } catch (error) {
             throw new Error(error)
         }

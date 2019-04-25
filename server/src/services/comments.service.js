@@ -4,7 +4,9 @@ module.exports = {
     async createComment(ideaId, userId, content) {
         try {
             return await comments.create({
-                ideaId, userId, content
+                ideaId,
+                userId,
+                content
             })
         }
         catch (error) {
