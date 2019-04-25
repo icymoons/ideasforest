@@ -4,10 +4,6 @@ const Sequelize = require("sequelize")
 const config = require("../config/config")
 const db = {}
 
-//relations 
-
-
-
 const sequelize = new Sequelize(
     config.db.database,
     config.db.user,
@@ -43,9 +39,5 @@ db.replies.belongsTo(db.users);
 
 db.sequelize = sequelize
 db.Sequelize = Sequelize
-
-
-
-
 
 module.exports = db
