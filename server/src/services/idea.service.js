@@ -1,6 +1,15 @@
 const { ideas } = require('../models')
 
 module.exports = {
+    async createIdea(userId, title, description, tags) {
+        try {
+            return await ideas.create({
+                userId, title, description, tags
+            })
+        } catch (error) {
+            throw new Error(error)
+        }
+    },
     async browseIdeas() {
         try {
             const ideasList = await ideas.findAll()
@@ -11,8 +20,7 @@ module.exports = {
                     user: await idea.getUser()
                 }
             })
-            const ideasData = await Promise.all(ideasPromises)
-            res.send(ideasData)
+            return await Promise.all(ideasPromises)
         } catch (error) {
             throw new Error(error)
         }
@@ -38,7 +46,7 @@ module.exports = {
                 return { comment, user: commentUser, repliesData }
             })
             const commentsData = await Promise.all(commentsPromises)
-            return { idea, ideaUser, commentsData }
+            return { idea, user: ideaUser, commentsData }
         } catch (error) {
             throw new Error(error)
         }
