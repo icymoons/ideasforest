@@ -12,7 +12,7 @@ module.exports = {
             .forEach(file => {
                 console.log(file)
                 var splitted = file.split('.')
-                exp[splitted[0] + capitalize(splitted[1])] = require(path.join(dirName, file))
+                exp[splitted[0]] = require(path.join(dirName, file))
             });
         return exp
     },
