@@ -7,5 +7,8 @@ module.exports = {
     },
     error(res) {
         res.status(500).end()
+    },
+    authFailed(res) {
+        res.status(503).end()
     }
 }

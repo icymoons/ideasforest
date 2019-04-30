@@ -18,9 +18,11 @@ module.exports = {
             const ideasList = await ideas.findAll()
             if (!ideasList) return null
             return await Promise.all(ideasList.map(async idea => {
+                const likes = await idea.getLikes()
                 return {
                     idea,
-                    user: await idea.getUser()
+                    user: await idea.getUser(),
+                    likesNumber: likes ? likes.length : 0
                 }
             }))
         } catch (error) {

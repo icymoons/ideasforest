@@ -19,23 +19,33 @@ fs.readdirSync(__dirname)
         db[model.name] = model
     });
 
-//relations
+//user - replies
+db.users.hasMany(db.replies);
+db.replies.belongsTo(db.users);
+
+//user - ideas
 db.users.hasMany(db.ideas);
 db.ideas.belongsTo(db.users);
 
-// comments 
+//users - likes
+db.users.hasMany(db.likes);
+db.likes.belongsTo(db.users);
+
+//users - comments 
 db.users.hasMany(db.comments);
 db.comments.belongsTo(db.users);
 
+//ideas - comments 
 db.ideas.hasMany(db.comments);
 db.comments.belongsTo(db.ideas);
 
-// replies  
+//ideas - likes
+db.ideas.hasMany(db.likes);
+db.likes.belongsTo(db.ideas);
+
+//comments - replies
 db.comments.hasMany(db.replies);
 db.replies.belongsTo(db.comments);
-
-db.users.hasMany(db.replies);
-db.replies.belongsTo(db.users);
 
 db.sequelize = sequelize
 db.Sequelize = Sequelize

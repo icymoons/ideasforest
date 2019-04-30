@@ -1,8 +1,8 @@
 const fs = require('fs')
 const path = require('path')
-function capitalize(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
-}
+const bcrypt = require('bcrypt')
+const config = require('./config')
+
 module.exports = {
     requireDir(dirName) {
         var exp = {}
@@ -16,5 +16,7 @@ module.exports = {
             });
         return exp
     },
-    capitalize
+    capitalize(string) {
+        return string.charAt(0).toUpperCase() + string.slice(1);
+    }
 }

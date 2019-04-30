@@ -1,5 +1,5 @@
 const { commentsService } = require('../services')
-const { status } = require('../status')
+const status = require('../status')
 
 module.exports = {
     async createCommentPost(req, res) {
@@ -9,8 +9,8 @@ module.exports = {
             if (!userData) status.default(res)
             status.success(res)
         } catch (error) {
-            status.default(res)
-            console.log(error)
+            console.trace(error)
+            status.error(res)
         }
     }
 }

@@ -1,5 +1,5 @@
 const { ideasService } = require('../services')
-const { status } = require('../status')
+const status = require('../status')
 
 module.exports = {
     async createIdeasPost(req, res) {
@@ -8,8 +8,8 @@ module.exports = {
             if (!ideasData) status.default(res)
             res.send(ideasData)
         } catch (error) {
+            console.trace(error)
             status.error(res)
-            console.log(error)
         }
     },
     async browseIdeasPost(req, res) {
@@ -18,8 +18,8 @@ module.exports = {
             if (!ideasData) status.default(res)
             res.send(ideasData)
         } catch (error) {
+            console.trace(error)
             status.error(res)
-            console.log(error)
         }
     },
     async getIdeaPageGet(req, res) {
@@ -29,8 +29,8 @@ module.exports = {
             if (!ideasData) status.default(res)
             res.send(ideasData)
         } catch (error) {
+            console.trace(error)
             status.error(res)
-            console.log(error)
         }
     }
 }

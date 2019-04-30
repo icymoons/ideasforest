@@ -1,6 +1,8 @@
 const dbname = "ideasforest"
 module.exports = {
     port: process.env.port || 8081,
+    secret: "ds78r9fdsf7qsdqsd979e86zuo3ii2r23uo3u89e798r7",
+    saltRounds: 26,
     db: {
         database: process.env.DB_NAME || dbname,
         user: process.env.DB_USER || dbname,
