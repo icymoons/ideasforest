@@ -17,13 +17,12 @@ module.exports = {
         try {
             const ideasList = await ideas.findAll()
             if (!ideasList) return null
-            const ideasPromises = ideasList.map(async idea => {
+            return await Promise.all(ideasList.map(async idea => {
                 return {
                     idea,
                     user: await idea.getUser()
                 }
-            })
-            return await Promise.all(ideasPromises)
+            }))
         } catch (error) {
             throw new Error(error)
         }
@@ -38,23 +37,21 @@ module.exports = {
             if (!idea) return null
             const ideaUser = await idea.getUser()
             const comments = await idea.getComments()
-            const commentsPromises = comments.map(async comment => {
+            const commentsData = await Promise.all(comments.map(async comment => {
                 const commentUser = await comment.getUser()
                 const replies = await comment.getReplies()
-                const repliesPromises = replies.map(async reply => {
+                const repliesData = await Promise.all(replies.map(async reply => {
                     return {
                         reply,
                         user: await reply.getUser()
                     }
-                })
-                const repliesData = await Promise.all(repliesPromises)
+                }))
                 return {
                     comment,
                     user: commentUser,
                     repliesData
                 }
-            })
-            const commentsData = await Promise.all(commentsPromises)
+            }))
             return {
                 idea,
                 user: ideaUser,

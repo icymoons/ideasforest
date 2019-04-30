@@ -1,24 +1,24 @@
 const { ideasService } = require('../services')
-const { redirect } = require('../helpers')
+const { status } = require('../status')
 
 module.exports = {
     async createIdeasPost(req, res) {
         try {
             const ideasData = await ideasService.browseIdeas()
-            if (!ideasData) helpers.redirectDefault(res)
+            if (!ideasData) status.default(res)
             res.send(ideasData)
         } catch (error) {
-            res.send(error)
+            status.error(res)
             console.log(error)
         }
     },
     async browseIdeasPost(req, res) {
         try {
             const ideasData = await ideasService.browseIdeas()
-            if (!ideasData) helpers.redirectDefault(res)
+            if (!ideasData) status.default(res)
             res.send(ideasData)
         } catch (error) {
-            res.send(error)
+            status.error(res)
             console.log(error)
         }
     },
@@ -26,10 +26,10 @@ module.exports = {
         try {
             const paramId = req.params.id
             const ideasData = await ideasService.getIdeaPage(paramId)
-            if (!ideasData) helpers.redirectDefault(res)
+            if (!ideasData) status.default(res)
             res.send(ideasData)
         } catch (error) {
-            res.status(400).json(error)
+            status.error(res)
             console.log(error)
         }
     }

@@ -3,13 +3,13 @@ const { redirect } = require('../helpers')
 
 module.exports = {
     async createUserPost(req, res) {
-        const { firstName, lastName, pseudo, email, password } = req.body
+        const { username, email, password } = req.body
         try {
-            const userData = await usersService.createUser(firstName, lastName, pseudo, email, password)
-            if (!userData) redirect.default(res)
-            redirect.success(res)
+            const userData = await usersService.createUser(username, email, password)
+            if (!userData) status.default(res)
+            status.success(res)
         } catch (error) {
-            res.send(error)
+            status.error(res)
             console.log(error)
         }
     },
@@ -17,10 +17,10 @@ module.exports = {
         try {
             const userId = req.params.id
             const userData = await usersService.getUser(userId)
-            if (!userData) redirect.default(res)
+            if (!userData) status.default(res)
             res.send(user)
         } catch (error) {
-            res.send(error)
+            status.error(res)
             console.log(error)
         }
     },

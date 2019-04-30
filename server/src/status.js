@@ -1,11 +1,11 @@
 module.exports = {
     success(res) {
-        res.json({ success: true })
+        res.status(200).end()
     },
     default(res) {
-        res.json({ default: true })
+        res.status(400).end()
     },
     error(res) {
-        res.json({ error: true })
+        res.status(500).end()
     }
 }

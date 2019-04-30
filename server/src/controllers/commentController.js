@@ -1,15 +1,15 @@
 const { commentsService } = require('../services')
-const { redirect } = require('../helpers')
+const { status } = require('../status')
 
 module.exports = {
     async createCommentPost(req, res) {
-        const { firstName, lastName, pseudo, email, password } = req.body
+        const { title, content, tags } = req.body
         try {
-            const userData = await commentsService.createUser(firstName, lastName, pseudo, email, password)
-            if (!userData) redirect.default(res)
-            redirect.success(res)
+            const userData = await commentsService.createComment(title, content, tags)
+            if (!userData) status.default(res)
+            status.success(res)
         } catch (error) {
-            res.send(error)
+            status.default(res)
             console.log(error)
         }
     }

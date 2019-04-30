@@ -12,12 +12,10 @@ module.exports = {
             throw new Error(error)
         }
     },
-    async createUser(firstName, lastName, pseudo, email, password) {
+    async createUser(userName, email, password) {
         try {
             return await users.create({
-                firstName,
-                lastName,
-                pseudo,
+                userName,
                 email,
                 password
             })
@@ -25,7 +23,7 @@ module.exports = {
             throw new Error(error)
         }
     },
-    async updateUser(userId, firstName, lastName, pseudo, email, password) {
+    async updateUser(userId, userName, email, password) {
         try {
             return await users.updateOne({
                 userId,
