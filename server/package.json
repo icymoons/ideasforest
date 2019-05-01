@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon src/app.js",
-    "deldb": "rm -f ./ideasforest.sqlite3"
+    "deldb": "rm -f ./ideasforest.sqlite3",
+    "init-eslint": "eslint --init"
   },
   "author": "",
   "license": "ISC",
@@ -20,5 +21,13 @@
     "password-hash": "^1.2.2",
     "sequelize": "^5.2.12",
     "sqlite3": "^4.0.6"
+  },
+  "devDependencies": {
+    "eslint": "^5.16.0",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-plugin-import": "^2.17.2",
+    "eslint-plugin-node": "^8.0.1",
+    "eslint-plugin-promise": "^4.1.1",
+    "eslint-plugin-standard": "^4.0.0"
   }
 }
