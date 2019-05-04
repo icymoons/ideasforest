@@ -1,13 +1,9 @@
-const { replies } = require('../models')
+const replyModel = require('./reply.model')
 
 module.exports = {
   async createReply (userId, commentId, content) {
     try {
-      return await replies.create({
-        userId,
-        commentId,
-        content
-      })
+      return await replyModel.create({ userId, commentId, content })
     } catch (error) {
       throw new Error(error)
     }

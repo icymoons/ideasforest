@@ -23,7 +23,6 @@ module.exports = {
       try {
         const decoded = jwt.verify(token, config.secret)
         res.locals.decodedToken = decoded
-        next()
       } catch (error) {
         console.trace(error)
         status.error(res)

@@ -5,8 +5,10 @@ const morgan = require('morgan')
 const config = require('./config')
 const { sequelize } = require('./models')
 const routes = require('./routes')
+const constants = require('./constants')
 
 const app = express()
+
 app.use(morgan('combined'))
 app.use(bodyParser.json())
 app.use(cors())
@@ -14,7 +16,7 @@ app.use(cors())
 routes(app)
 
 app.use(function (req, res, next) {
-  res.status(404).json({ default: true })
+  res.status(constants.STATUS_NOT_FOUND).json({ default: true })
 })
 
 sequelize.sync().then(() => {

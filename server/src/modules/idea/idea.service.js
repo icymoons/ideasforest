@@ -1,21 +1,16 @@
-const { ideas } = require('../models')
+const ideaModel = require('./idea.model')
 
 module.exports = {
   async createIdea (userId, title, description, tags) {
     try {
-      return await ideas.create({
-        userId,
-        title,
-        description,
-        tags
-      })
+      return await ideaModel.create({ userId, title, description, tags })
     } catch (error) {
       throw new Error(error)
     }
   },
   async browseIdeas () {
     try {
-      const ideasList = await ideas.findAll()
+      const ideasList = await ideaModel.findAll()
       if (!ideasList) return null
       return await Promise.all(ideasList.map(async idea => {
         const likes = await idea.getLikes()
@@ -31,7 +26,7 @@ module.exports = {
   },
   async getIdeaPage (ideaId) {
     try {
-      const idea = await ideas.findOne({
+      const idea = await ideaModel.findOne({
         where: {
           id: ideaId
         }
@@ -43,22 +38,11 @@ module.exports = {
         const commentUser = await comment.getUser()
         const replies = await comment.getReplies()
         const repliesData = await Promise.all(replies.map(async reply => {
-          return {
-            reply,
-            user: await reply.getUser()
-          }
+          return { reply, user: await reply.getUser() }
         }))
-        return {
-          comment,
-          user: commentUser,
-          repliesData
-        }
+        return { comment, user: commentUser, repliesData }
       }))
-      return {
-        idea,
-        user: ideaUser,
-        commentsData
-      }
+      return { idea, user: ideaUser, commentsData }
     } catch (error) {
       throw new Error(error)
     }
