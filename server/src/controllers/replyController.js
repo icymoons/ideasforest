@@ -1,16 +1,18 @@
-const { repliesService } = require('../services')
-const status = require('../status')
+
+const replyService = require('../services/replyService')
+const constants = require('../constants')
 
 module.exports = {
   async createReplyPost (req, res) {
     const { firstName, lastName, pseudo, email, password } = req.body
     try {
-      const userData = await repliesService.createReply(firstName, lastName, pseudo, email, password)
-      if (!userData) status.default(res)
-      status.success(res)
+      const userData = await replyService.createReply(firstName, lastName,
+        pseudo, email, password)
+      if (!userData) res.status(constants.ERROR_STATUS).end()
+      res.status(constants.SUCCESS_STATUS).end()
     } catch (error) {
       console.trace(error)
-      status.error(res)
+      res.status(constants.ERROR_STATUS).end()
     }
   }
 }

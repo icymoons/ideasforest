@@ -1,17 +1,17 @@
-const { repliesService } = require('../services')
-const status = require('../status')
+const likeService = require('../services/likeService')
+const constants = require('../constants')
 
 module.exports = {
   async createLikePost (req, res) {
     const { userId, ideaId } = req.body
     try {
-      if (!userId || !ideaId) status.default(res)
-      const userData = await repliesService.createLike(userId, ideaId)
-      if (!userData) status.default(res)
-      status.success(res)
+      if (!userId || !ideaId) res.status(constants.ERROR_STATUS).end()
+      const userData = await likeService.createLike(userId, ideaId)
+      if (!userData) res.status(constants.ERROR_STATUS).end()
+      res.status(constants.SUCCESS_STATUS).end()
     } catch (error) {
       console.trace(error)
-      status.error(res)
+      res.status(constants.ERROR_STATUS).end()
     }
   }
 }
