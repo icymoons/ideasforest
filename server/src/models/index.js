@@ -19,33 +19,13 @@ fs.readdirSync(__dirname)
     db[file.split('.')[0]] = model
   })
 
-// users have replies
-db.users.hasMany(db.replies)
-db.replies.belongsTo(db.users)
-
-// users have ideas
-db.users.hasMany(db.ideas)
-db.ideas.belongsTo(db.users)
-
-// users have likes
-db.users.hasMany(db.likes)
-db.likes.belongsTo(db.users)
-
-// users have comments
-db.users.hasMany(db.comments)
-db.comments.belongsTo(db.users)
-
-// ideas have comments
-db.ideas.hasMany(db.comments)
-db.comments.belongsTo(db.ideas)
-
-// ideas have likes
-db.ideas.hasMany(db.likes)
-db.likes.belongsTo(db.ideas)
-
-// comments have replies
-db.comments.hasMany(db.replies)
-db.replies.belongsTo(db.comments)
+// Initializes associations
+Object.keys(db).forEach(key => {
+  let model = db[key]
+  if (model.associate) {
+    model.associate(db)
+  }
+})
 
 db.sequelize = sequelize
 db.Sequelize = Sequelize

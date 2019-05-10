@@ -27,16 +27,20 @@ module.exports = {
       })
       if (!idea) return null
       const ideaUser = await idea.getUser()
+      const ideaUserProfile = ideaUser ? await ideaUser.getProfile() : null
       const comments = await idea.getComments()
       const commentsData = await Promise.all(comments.map(async comment => {
         const commentUser = await comment.getUser()
+        const commentUserProfile = commentUser ? await commentUser.getProfile() : null
         const replies = await comment.getReplies()
         const repliesData = await Promise.all(replies.map(async reply => {
-          return { reply, user: await reply.getUser() }
+          const replyUser = await reply.getUser()
+          const replyUserProfile = replyUser ? await replyUser.getProfile() : null
+          return { reply, user: replyUser ? { userId: replyUser.id, pseudo: replyUser.pseudo, photo: replyUserProfile.photo } : null }
         }))
-        return { comment, user: commentUser, repliesData }
+        return { comment, user: { userId: commentUser.id, pseudo: commentUser.pseudo, photo: commentUserProfile.photo }, repliesData }
       }))
-      return { idea, user: ideaUser, commentsData }
+      return { idea, user: { userId: ideaUser.id, pseudo: ideaUser.pseudo, photo: ideaUserProfile.photo }, commentsData }
     } catch (error) {
       throw new Error(error)
     }

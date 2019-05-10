@@ -1,35 +1,43 @@
 const jwt = require('jsonwebtoken')
 const config = require('../config')
-const status = require('../status')
+const constants = require('../lib/constants')
+const userService = require('../services/userService')
 
 module.exports = {
-  inAccess (req, res, next) {
+  async inAccess (req, res, next) {
     const token = req.body.token || req.query.token || req.headers['x-access-token']
     if (token) {
       try {
-        const decoded = jwt.verify(token, config.secret)
-        res.locals.decodedToken = decoded
-        next()
+        const decodedToken = jwt.verify(token, config.secret)
+        const user = await userService.getUserById(decodedToken.userId)
+        if (user) {
+          res.locals.user = user
+          next()
+        } else {
+          res.status(constants.UNAUTHORIZED_STATUS).end()
+        }
       } catch (error) {
         console.trace(error)
-        status.error(res)
+        res.status(constants.ERROR_STATUS).end()
       }
     }
-    status.authFailed(res)
   },
-  inOutAccess (req, res, next) {
+  async inOutAccess (req, res, next) {
     const token = req.body.token || req.query.token || req.headers['x-access-token']
     if (token) {
       try {
-        const decoded = jwt.verify(token, config.secret)
-        res.locals.decodedToken = decoded
+        const decodedToken = jwt.verify(token, config.secret)
+        const user = await userService.getUserById(decodedToken.userId)
+        if (user) {
+          res.locals.user = user
+        }
         next()
       } catch (error) {
         console.trace(error)
-        status.error(res)
+        res.status(constants.ERROR_STATUS).end()
       }
     }
-    next()
+    res.status(constants.AUTH_FAILED_STATUS).end()
   },
   outAccess (req, res, next) {
     next()

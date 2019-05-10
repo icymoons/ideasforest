@@ -22,7 +22,7 @@ module.exports = {
       if (!userData) res.status(constants.SUCCESS_STATUS).end()
       const testPassword = await bcrypt.compare(password, userData.password)
       if (testPassword) {
-        const JWTToken = jwt.sign({ email: userData.email, id: userData.id },
+        const JWTToken = jwt.sign({ email: userData.email, userId: userData.id },
           constants.TOKEN_HASH_KEY, { expiresIn: '24h' })
         res.status(constants.SUCCESS_STATUS).json({
           token: JWTToken

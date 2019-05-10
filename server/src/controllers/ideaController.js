@@ -1,4 +1,4 @@
-const ideaService = require('./services/ideaService')
+const ideaService = require('../services/ideaService')
 const constants = require('../lib/constants')
 
 module.exports = {

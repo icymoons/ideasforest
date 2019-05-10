@@ -17,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
     password: DataTypes.STRING
   })
   userModel.associate = (models) => {
-    userModel.hasOne(models.profileModel)
+    userModel.hasOne(models.userProfileModel)
     userModel.hasMany(models.ideaModel)
     userModel.hasMany(models.commentModel)
     userModel.hasMany(models.replyModel)
