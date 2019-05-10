@@ -1,5 +1,4 @@
 const userService = require('../services/userService')
-const profileService = require('../services/profileService')
 const constants = require('../lib/constants')
 const messages = require('../lib/messages')
 
