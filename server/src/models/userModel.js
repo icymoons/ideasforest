@@ -1,5 +1,5 @@
-module.exports = (sequelize, DataTypes) =>
-  sequelize.define('users', {
+module.exports = (sequelize, DataTypes) => {
+  const userModel = sequelize.define('users', {
     id: {
       type: DataTypes.UUID,
       primaryKey: true,
@@ -16,3 +16,12 @@ module.exports = (sequelize, DataTypes) =>
     },
     password: DataTypes.STRING
   })
+  userModel.associate = (models) => {
+    userModel.hasOne(models.profileModel)
+    userModel.hasMany(models.ideaModel)
+    userModel.hasMany(models.commentModel)
+    userModel.hasMany(models.replyModel)
+    userModel.hasMany(models.likeModel)
+  }
+  return userModel
+}

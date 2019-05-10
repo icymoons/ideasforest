@@ -1,5 +1,5 @@
-module.exports = (sequelize, DataTypes) =>
-  sequelize.define('ideas', {
+module.exports = (sequelize, DataTypes) => {
+  const ideaModel = sequelize.define('ideas', {
     id: {
       type: DataTypes.UUID,
       primaryKey: true,
@@ -10,3 +10,10 @@ module.exports = (sequelize, DataTypes) =>
     description: DataTypes.TEXT,
     tags: DataTypes.TEXT
   })
+
+  ideaModel.associate = (models) => {
+    ideaModel.belongsTo(models.userModel)
+  }
+
+  return ideaModel
+}

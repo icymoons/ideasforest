@@ -1,36 +1,38 @@
-const { ideasService } = require('../services')
-const status = require('../status')
+const ideaService = require('./services/ideaService')
+const constants = require('../lib/constants')
 
 module.exports = {
   async createIdeaPost (req, res) {
     try {
-      const ideasData = await ideasService.browseIdeas()
-      if (!ideasData) status.default(res)
-      res.send(ideasData)
+      const { title, description, tags } = req.body
+      const userId = res.locals.decodedToken ? res.locals.decodedToken.id : null
+      const ideasData = await ideaService.createIdea(userId, title, description, tags)
+      if (!ideasData) res.status(constants.STATUS_NOT_FOUND).end()
+      else { res.send(ideasData) }
     } catch (error) {
       console.trace(error)
-      status.error(res)
+      res.status(constants.ERROR_STATUS).end()
     }
   },
   async browseIdeasPost (req, res) {
     try {
-      const ideasData = await ideasService.browseIdeas()
-      if (!ideasData) status.default(res)
+      const ideasData = await ideaService.browseIdeas()
+      if (!ideasData) res.status(constants.STATUS_NOT_FOUND).end()
       res.send(ideasData)
     } catch (error) {
       console.trace(error)
-      status.error(res)
+      res.status(constants.ERROR_STATUS).end()
     }
   },
   async getIdeaPageGet (req, res) {
     try {
       const paramId = req.params.id
-      const ideasData = await ideasService.getIdeaPage(paramId)
-      if (!ideasData) status.default(res)
+      const ideasData = await ideaService.getIdeaPage(paramId)
+      if (!ideasData) res.status(constants.STATUS_NOT_FOUND).end()
       res.send(ideasData)
     } catch (error) {
       console.trace(error)
-      status.error(res)
+      res.status(constants.SUCCESS_STATUS).end()
     }
   }
 }

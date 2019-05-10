@@ -1,5 +1,5 @@
-module.exports = (sequelize, DataTypes) =>
-  sequelize.define('replies', {
+module.exports = (sequelize, DataTypes) => {
+  const replyModel = sequelize.define('replies', {
     id: {
       type: DataTypes.UUID,
       primaryKey: true,
@@ -8,3 +8,10 @@ module.exports = (sequelize, DataTypes) =>
     },
     content: DataTypes.TEXT
   })
+
+  replyModel.associate = (models) => {
+    replyModel.belongsTo(models.userModel)
+  }
+
+  return replyModel
+}

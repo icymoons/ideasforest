@@ -1,6 +1,6 @@
 
 const replyService = require('../services/replyService')
-const constants = require('../constants')
+const constants = require('../lib/constants')
 
 module.exports = {
   async createReplyPost (req, res) {

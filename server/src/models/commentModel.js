@@ -1,5 +1,5 @@
-module.exports = (sequelize, DataTypes) =>
-  sequelize.define('comments', {
+module.exports = (sequelize, DataTypes) => {
+  const commentModel = sequelize.define('comments', {
     id: {
       type: DataTypes.UUID,
       primaryKey: true,
@@ -8,3 +8,8 @@ module.exports = (sequelize, DataTypes) =>
     },
     content: DataTypes.TEXT
   })
+  commentModel.associate = (models) => {
+    commentModel.belongsTo(models.userModel)
+  }
+  return commentModel
+}

@@ -3,12 +3,7 @@ const { ideas } = require('../models')
 module.exports = {
   async createIdea (userId, title, description, tags) {
     try {
-      return await ideas.create({
-        userId,
-        title,
-        description,
-        tags
-      })
+      return await ideas.create({ userId, title, description, tags })
     } catch (error) {
       throw new Error(error)
     }
@@ -19,11 +14,7 @@ module.exports = {
       if (!ideasList) return null
       return await Promise.all(ideasList.map(async idea => {
         const likes = await idea.getLikes()
-        return {
-          idea,
-          user: await idea.getUser(),
-          likesNumber: likes ? likes.length : 0
-        }
+        return { idea, user: await idea.getUser(), likesNumber: likes ? likes.length : 0 }
       }))
     } catch (error) {
       throw new Error(error)
@@ -32,9 +23,7 @@ module.exports = {
   async getIdeaPage (ideaId) {
     try {
       const idea = await ideas.findOne({
-        where: {
-          id: ideaId
-        }
+        where: { id: ideaId }
       })
       if (!idea) return null
       const ideaUser = await idea.getUser()
@@ -43,22 +32,11 @@ module.exports = {
         const commentUser = await comment.getUser()
         const replies = await comment.getReplies()
         const repliesData = await Promise.all(replies.map(async reply => {
-          return {
-            reply,
-            user: await reply.getUser()
-          }
+          return { reply, user: await reply.getUser() }
         }))
-        return {
-          comment,
-          user: commentUser,
-          repliesData
-        }
+        return { comment, user: commentUser, repliesData }
       }))
-      return {
-        idea,
-        user: ideaUser,
-        commentsData
-      }
+      return { idea, user: ideaUser, commentsData }
     } catch (error) {
       throw new Error(error)
     }

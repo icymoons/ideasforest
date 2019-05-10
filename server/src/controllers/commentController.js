@@ -1,16 +1,16 @@
-const { commentsService } = require('../services')
-const status = require('../status')
+const commentService = require('../services/commentService')
+const constants = require('../lib/constants')
 
 module.exports = {
   async createCommentPost (req, res) {
     const { title, content, tags } = req.body
     try {
-      const userData = await commentsService.createComment(title, content, tags)
-      if (!userData) status.default(res)
-      status.success(res)
+      const userData = await commentService.createComment(title, content, tags)
+      if (!userData) res.status(constants.ERROR_STATUS).end()
+      res.status(constants.SUCCESS_STATUS).end()
     } catch (error) {
       console.trace(error)
-      status.error(res)
+      res.status(constants.ERROR_STATUS).end()
     }
   }
 }

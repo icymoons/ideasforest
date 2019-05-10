@@ -16,34 +16,34 @@ fs.readdirSync(__dirname)
     file !== 'index.js')
   .forEach(file => {
     const model = sequelize.import(path.join(__dirname, file))
-    db[model.name] = model
+    db[file.split('.')[0]] = model
   })
 
-// user - replies
+// users have replies
 db.users.hasMany(db.replies)
 db.replies.belongsTo(db.users)
 
-// user - ideas
+// users have ideas
 db.users.hasMany(db.ideas)
 db.ideas.belongsTo(db.users)
 
-// users - likes
+// users have likes
 db.users.hasMany(db.likes)
 db.likes.belongsTo(db.users)
 
-// users - comments
+// users have comments
 db.users.hasMany(db.comments)
 db.comments.belongsTo(db.users)
 
-// ideas - comments
+// ideas have comments
 db.ideas.hasMany(db.comments)
 db.comments.belongsTo(db.ideas)
 
-// ideas - likes
+// ideas have likes
 db.ideas.hasMany(db.likes)
 db.likes.belongsTo(db.ideas)
 
-// comments - replies
+// comments have replies
 db.comments.hasMany(db.replies)
 db.replies.belongsTo(db.comments)
 

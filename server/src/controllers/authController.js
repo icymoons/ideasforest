@@ -1,7 +1,7 @@
 const userService = require('../services/userService')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
-const constants = require('../constants')
+const constants = require('../lib/constants')
 
 module.exports = {
   async registerPost (req, res) {
@@ -12,7 +12,7 @@ module.exports = {
       res.status(constants.SUCCESS_STATUS).end()
     } catch (error) {
       console.trace(error)
-      res.status(constants.SUCCESS_STATUS).end()
+      res.status(constants.ERROR_STATUS).end()
     }
   },
   async signInPost (req, res) {

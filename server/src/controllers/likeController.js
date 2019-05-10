@@ -1,5 +1,5 @@
 const likeService = require('../services/likeService')
-const constants = require('../constants')
+const constants = require('../lib/constants')
 
 module.exports = {
   async createLikePost (req, res) {
